@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Employee } from 'src/app/models/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-employee',
@@ -27,5 +28,25 @@ export class EmployeeComponent implements OnInit {
         alert(error.message);
       }
     );
+  }
+
+  public onOpenModal(employee: any, mode: String): void {
+    const container = document.getElementById('main-container');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+    if (mode === 'add') {
+      button.setAttribute('data-target', '#addEmployeeModal');
+    }
+    if (mode === 'edit') {
+      button.setAttribute('data-target', '#editEmployeeModal');
+    }
+    if (mode === 'delete') {
+      button.setAttribute('data-target', '#deleteEmployeeModal');
+    }
+
+    container?.appendChild(button);
+    button.click();
   }
 }
