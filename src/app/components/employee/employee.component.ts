@@ -30,6 +30,16 @@ export class EmployeeComponent implements OnInit {
     );
   }
 
+  public onAddEmployee(addForm: NgForm): void {
+    this.service.addEmployee(addForm.value).subscribe(
+      (response: Employee) => {
+        console.log(response);
+        this.getEmployees;
+      },
+      (error: HttpErrorResponse) => {alert(error.message)}
+    )
+  }
+
   public onOpenModal(employee: any, mode: String): void {
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
