@@ -40,7 +40,7 @@ export class EmployeeComponent implements OnInit {
     )
   }
 
-  public onOpenModal(employee: any, mode: String): void {
+  public onOpenModal(mode: String): void {
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
     button.type = 'button';
@@ -50,7 +50,7 @@ export class EmployeeComponent implements OnInit {
       button.setAttribute('data-target', '#addEmployeeModal');
     }
     if (mode === 'edit') {
-      button.setAttribute('data-target', '#editEmployeeModal');
+      button.setAttribute('data-target', '#updateEmployeeModal');
     }
     if (mode === 'delete') {
       button.setAttribute('data-target', '#deleteEmployeeModal');
