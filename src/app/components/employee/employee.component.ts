@@ -31,10 +31,10 @@ export class EmployeeComponent implements OnInit {
   }
 
   public onAddEmployee(addForm: NgForm): void {
+    document.getElementById('add-employee-form')?.click();
     this.service.addEmployee(addForm.value).subscribe(
       (response: Employee) => {
-        console.log(response);
-        this.getEmployees;
+        this.getEmployees();
       },
       (error: HttpErrorResponse) => {alert(error.message)}
     )
