@@ -3,11 +3,10 @@ body{
 }
 
 .footer_area {
+  max-width: 100%;
   margin-top: 80px;
   background-color: #343a40;
   color: white;
-  position:fixed;
-  bottom: 0px;
   height: 250px;
   z-index: 1;
   overflow: hidden;
