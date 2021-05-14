@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Employee } from 'src/app/models/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { NgForm } from '@angular/forms';
@@ -11,8 +11,8 @@ import { NgForm } from '@angular/forms';
 })
 export class EmployeeComponent implements OnInit {
   employees: Employee[] = [];
-  editEmployee: any = null;
-  deleteEmployee: any = null;
+  editEmployee!: Employee;
+  deleteEmployee!: Employee;
 
   constructor(private service: EmployeeService) { }
 
@@ -32,7 +32,6 @@ export class EmployeeComponent implements OnInit {
   }
 
   public onAddEmployee(addForm: NgForm): void {
-    document.getElementById('add-employee-form')?.click();
     this.service.addEmployee(addForm.value).subscribe(
       (response: Employee) => {
         this.getEmployees();
@@ -52,8 +51,8 @@ export class EmployeeComponent implements OnInit {
     )
   }
 
-  public onDeleteEmployee(id: number): void {
-    this.service.deleteEmployee(id).subscribe(
+  public onDeleteEmployee(employee: Employee): void {
+    this.service.deleteEmployee(employee.id).subscribe(
       (response: void) => {
         this.getEmployees();
       },
@@ -81,9 +80,6 @@ export class EmployeeComponent implements OnInit {
     button.type = 'button';
     button.style.display = 'none';
     button.setAttribute('data-toggle', 'modal');
-    if (mode === 'add') {
-      button.setAttribute('data-target', '#addEmployeeModal');
-    }
     if (mode === 'edit') {
       this.editEmployee = employee;
       button.setAttribute('data-target', '#updateEmployeeModal');
@@ -93,16 +89,6 @@ export class EmployeeComponent implements OnInit {
       button.setAttribute('data-target', '#deleteEmployeeModal');
     }
 
-    container?.appendChild(button);
-    button.click();
-  }
-  public onAddModal(): void {
-    const container = document.getElementById('main-container');
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.style.display = 'none';
-    button.setAttribute('data-toggle', 'modal');
-    button.setAttribute('data-target', '#addEmployeeModal');
     container?.appendChild(button);
     button.click();
   }
