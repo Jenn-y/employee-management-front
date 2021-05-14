@@ -6,8 +6,8 @@ body{
   margin-top: 80px;
   background-color: #343a40;
   color: white;
-  position: relative;
-  bottom: 0;
+  position:fixed;
+  bottom: 0px;
   height: 250px;
   z-index: 1;
   overflow: hidden;
