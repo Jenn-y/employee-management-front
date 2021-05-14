@@ -61,6 +61,20 @@ export class EmployeeComponent implements OnInit {
     )
   }
 
+  public searchEmployees(key: String): void {
+    const result: Employee[] = [];
+    for (const employee of this.employees){
+      if (employee.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || employee.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || employee.phone.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || employee.jobTitle.toLowerCase().indexOf(key.toLowerCase()) !== -1){
+        result.push(employee);
+      }
+    }
+    this.employees = result;
+    if (result.length === 0 || !key) this.getEmployees();
+  }
+
   public onOpenModal(employee: Employee, mode: String): void {
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
